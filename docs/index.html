@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio Profissional | Alicia Silva Dias</title>
+  <style>
+    /* --- VARIÁVEIS E PALETA DE CORES PASTÉIS --- */
+    :root {
+      --bg-color: #f8f6f0;          /* Creme suave */
+      --primary: #8aa6c4;           /* Azul pastel ajustado */
+      --secondary: #e8b4b8;         /* Rosa pastel */
+      --accent: #b5c99a;            /* Verde pastel */
+      --text-main: #3d405b;         /* Cinza escuro/cinza-azulado */
+      --text-muted: #6b705c;        /* Cinza intermediário */
+      --card-bg: rgba(255, 255, 255, 0.85); /* Efeito vidro translúcido */
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* --- RESET BÁSICO --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* --- FUNDO DINÂMICO COM GRADIENTE ANIMADO --- */
+    body {
+      background: linear-gradient(-45deg, #fdfbf7, #f2e9e1, #e8eae6, #f3e8ee);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* --- CABEÇALHO / NAVEGAÇÃO --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* --- ESTRUTURA DAS SEÇÕES --- */
+    section {
+      padding: 3.5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #home {
+      padding-top: 8rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 4px;
+      background-color: var(--secondary);
+      border-radius: 2px;
+    }
+
+    /* --- ANIMAÇÃO DE ROLAGEM (FADE IN UP) --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- HOME / HERO --- */
+    #home {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: var(--primary);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-img {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-avatar {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #ffffff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      background-color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-avatar:hover {
+      transform: scale(1.03);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(138, 166, 196, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #7895b2;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(138, 166, 196, 0.4);
+    }
+
+    /* --- SOBRE & COMPLEMENTARES --- */
+    .about-content, .info-box {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+      border-left: 6px solid var(--accent);
+      border-top: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      border-left: 4px solid var(--primary);
+      border-top: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .info-card h3 {
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      font-size: 1.2rem;
+    }
+
+    .info-card ul {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .info-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- TRAJETÓRIA / LINHA DO TEMPO --- */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      border-left: 4px solid var(--secondary);
+      border-top: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .timeline-item .date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: inline-block;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- PROJETOS E HABILIDADES --- */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      border-top: 1px solid rgba(255,255,255,0.6);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .project-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-contribution {
+      font-size: 0.9rem;
+      margin-top: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      background-color: rgba(253, 251, 247, 0.8);
+      color: var(--text-muted);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+      color: var(--text-main);
+    }
+
+    /* --- CONTATO --- */
+    .contact-container {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(8px);
+      padding: 2.5rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      border-top: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 768px) {
+      section {
+        padding: 2.5rem 1.5rem;
+      }
+
+      #home {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 6rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+
+      .profile-avatar {
+        width: 200px;
+        height: 200px;
+      }
+
+      .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section-title {
+        text-align: center;
+      }
+
+      .nav-links {
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#home" class="logo">Portfólio</a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#carreira">Carreira</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#complementares">Informações</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="hero-text reveal">
+      <h1>Olá, eu sou<br><span>Alicia Silva Dias</span></h1>
+      <p>Desenvolvedora Full Stack & Entusiasta de Tecnologia</p>
+      <a href="#contato" class="btn">Redes Sociais</a>
+    </div>
+    <div class="hero-img reveal">
+      <img src="minha-foto.jpeg" alt="Foto de Alicia Silva Dias" class="profile-avatar">
+    </div>
+  </section>
+
+  <section id="sobre">
+    <h2 class="section-title reveal">Sobre Mim</h2>
+    <div class="about-content reveal">
+      <p>Sou desenvolvedora Full-Stack focada em criar interfaces fluidas, responsivas e sistemas bem estruturados. Minha atuação é centrada no ecossistema TypeScript, React, Node.js (Express) e MongoDB, desenvolvendo aplicações dinâmicas que vão desde sistemas de gestão até a integração com APIs em tempo real. Tenho um cuidado muito grande com a experiência do usuário (UX/UI), buscando sempre manter a consistência visual, o padrão de design e a componentização limpa no front-end, sem abrir mão de uma arquitetura organizada no back-end. Além disso, tenho vivência prática com diagnóstico de hardware e infraestrutura, o que me dá uma visão ampla sobre desempenho e funcionamento de sistemas de ponta a ponta.</p>
+    </div>
+  </section>
+
+  <section id="carreira">
+    <h2 class="section-title reveal">Trajetória Profissional</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <span class="date">2025 - Presente</span>
+        <h3>Desenvolvedora / Estagiária</h3>
+        <p>Formação voltada à engenharia de software, algoritmos e desenvolvimento prático. Durante a faculdade, foquei no ciclo completo de desenvolvimento de aplicações reais. Suporte e diagnóstico de infraestrutura, hardware e ambientes de desenvolvimento.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <span class="date">2022 - 2024</span>
+        <h3>Projetos Acadêmicos</h3>
+        <p>Desenvolvimento de soluções personalizadas, sistemas de gestão e aplicações web utilizando tecnologias modernas.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <span class="date">2022</span>
+        <h3>Início dos Estudos em Tecnologia</h3>
+        <p>Foco na base de algoritmos, estrutura de dados, HTML, CSS, JavaScript e arquitetura de software. Além do curso voltado ao Design Gráfico, que deu início à minha carreira.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <h2 class="section-title reveal">Projetos & Habilidades</h2>
+    <div class="grid-cards">
+      
+      <div class="card reveal">
+        <div>
+          <h3>Sistema de Gestão de Leads</h3>
+          <p class="project-meta">3DSM – 1º Sem. 2026 | Projeto Integrador (ABP)</p>
+          <p>Aplicação voltada para controle de fluxo e gerenciamento de leads, com interface dinâmica e responsiva.</p>
+          <p class="project-contribution"><strong>Contribuição Pessoal:</strong> Product Owner (PO) do projeto.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+        <a href="https://github.com/NexussDev/abp-3-valle-leads-system" target="_blank" class="project-link">Ver no GitHub &rarr;</a>
+      </div>
+      
+      <div class="card reveal">
+        <div>
+          <h3>Aplicação de Clima</h3>
+          <p class="project-meta">2DSM – 2º Sem. 2025 | Projeto Integrador (ABP)</p>
+          <p>Projeto integrado a APIs externas para consumo e exibição de dados meteorológicos em tempo real.</p>
+          <p class="project-contribution"><strong>Contribuição Pessoal:</strong> Desenvolvimento da interface Front-end.</p>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">API REST</span>
+            <span class="tag">CSS3</span>
+          </div>
+        </div>
+        <a href="https://github.com/ExceptionH4ndlers/ABP_2DSM" target="_blank" class="project-link">Ver no GitHub &rarr;</a>
+      </div>
+      
+      <div class="card reveal">
+        <div>
+          <h3>Sistema de Reserva de Mesas</h3>
+          <p class="project-meta">Projeto Acadêmico</p>
+          <p>Ferramenta simples e funcional para controle de reserva de mesas de um estabelecimento.</p>
+          <p class="project-contribution"><strong>Contribuição Pessoal:</strong> Desenvolvimento completo da aplicação.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">CSS</span>
+          </div>
+        </div>
+        <a href="https://github.com/TIALICIA/PROJETOS_FATEC/tree/main/3_SEMESTRE/DWIII/PROVA%202" target="_blank" class="project-link">Ver no GitHub &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="complementares">
+    <h2 class="section-title reveal">Informações Complementares</h2>
+    <div class="info-grid reveal">
+      
+      <div class="info-card">
+        <h3>Cursos & Certificações</h3>
+        <ul>
+          <li>Design Gráfico — Advanced</li>
+          <li>Scratch e JavaScript — Alura</li>
+          <li>Construção de Web — USP</li>
+          <li>Programação em Português — IFRS</li>
+          <li>Inteligência Artificial — Fundação Bradesco</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Idiomas</h3>
+        <ul>
+          <li>Inglês Intermediário — Fatore</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2 class="section-title reveal">Vamos Conversar?</h2>
+    <div class="contact-container reveal">
+      <p>Estou sempre aberta a novas oportunidades, colaborações e desafios.</p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/alicia-silva-dias-656b2817a" target="_blank" class="btn" style="background-color: var(--secondary);">LinkedIn</a>
+        <a href="https://github.com/TIALICIA" target="_blank" class="btn" style="background-color: var(--accent); color: var(--text-main);">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Configuração do leitor de tela para ativação das animações de rolagem
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    // Seleciona todos os elementos com a classe .reveal para observar
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
